@@ -4,23 +4,23 @@ phases:
   pre_build:
     commands:
        - echo Logging / auth in to Amazon ECR
-       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 806627825545.dkr.ecr.us-east-1.amazonaws.com
+       - ### aws ecr get-login-password 
 
   build:
     commands:
       - echo Build started
       - echo Building the docker image
       - docker build -t yt-video-image .
-      - docker tag yt-video-image:latest 806627825545.dkr.ecr.us-east-1.amazonaws.com/yt-video-image:latest
+      - ### docker tag 
 
 
   post_build:
     commands:
      - echo build completed
      - echo pushing in to docker ECR...
-     - docker push 806627825545.dkr.ecr.us-east-1.amazonaws.com/yt-video-image:latest
+     - docker push ### 
      - echo Writing image definition file..
-     - printf '[{"name":"%s","imageUri":"%s"}]' "yt-video-cluster" "806627825545.dkr.ecr.us-east-1.amazonaws.com/yt-video-image" > imagedefinitions.json
+     - printf '[{"name":"%s","imageUri":"%s"}]' "" "" > imagedefinitions.json
 
 
 artifacts:
